@@ -27,7 +27,6 @@ public:
         }
         ans.push_back(x);
         ans.push_back(y);
-        sort(ans.begin(),ans.end());
         return ans;
 
 
