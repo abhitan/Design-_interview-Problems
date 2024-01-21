@@ -1,9 +1,6 @@
 class Solution {
 public:
-int dp[1001][1001];
-
-
- int helper(vector<vector<int>>& mat,int i,int j)
+ int helper(vector<vector<int>>& mat,int i,int j, vector<vector<int>>&dp)
  {
      if(i >= 0 and j >= 0 and mat[i][j] == 1)
      {
@@ -22,10 +19,10 @@ int dp[1001][1001];
          return dp[i][j];
      }
 
-     int up = helper(mat,i-1,j);
-     int down = helper(mat,i,j-1);
+     int up = helper(mat,i-1,j,dp);
+     int left = helper(mat,i,j-1,dp);
 
-     return dp[i][j] = up + down;
+     return dp[i][j] = up + left;
  }
 
 
@@ -37,13 +34,12 @@ int dp[1001][1001];
         
         int m = obstacleGrid.size();
         int n = obstacleGrid[0].size();
-
-        memset(dp,-1,sizeof(dp));
+        vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
 
         int i = m-1;
         int j = n-1;
 
-        return helper(obstacleGrid,i,j);
+        return helper(obstacleGrid,i,j,dp);
        
     }
 };
