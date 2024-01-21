@@ -1,43 +1,41 @@
 class Solution {
 public:
 
-  bool allZeros(vector<int>&freq)
+   bool allZero(vector<int>&freq)
    {
-       for(auto it:freq)
+       for(auto itr:freq)
        {
-           if(it != 0)
-           {
-               return false;
-           }
+           if(itr != 0)
+           return false;
        }
        return true;
    }
 
 
-    bool checkInclusion(string p, string s) {
-        vector<int>ans;
-        vector<int>freq(26,0);
-        int n = s.size();
-        int k = p.size();
 
+
+
+    bool checkInclusion(string pat, string text) {
+        int k = pat.length();
+        int n = text.size();
+        vector<int>freq(26,0);
         for(int i = 0;i<k;i++)
         {
-            freq[p[i]-'a']++;
+            freq[pat[i] - 'a']++;
         }
-    
+
         int i = 0;
         int j = 0;
         while(j<n)
         {
-            freq[s[j]-'a']--;
+            freq[text[j]-'a']--;
             if(j-i+1 == k)
             {
-                if(allZeros(freq))
+                if(allZero(freq))
                 {
-                   return true;
+                    return true;
                 }
-
-                freq[s[i] - 'a']++;
+                freq[text[i] - 'a']++;
                 i++;
             }
             j++;
